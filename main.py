@@ -1,10 +1,11 @@
+from subprocess import call
 from hashing import hashing_main
 from files import files_main
 
 
 choices = {
-    '1': 'Hashing Things',
-    '2': 'File/Folder Automation',
+    '1.': 'Hashing Things',
+    '2.': 'File/Folder Automation',
 }
 
 
@@ -20,5 +21,9 @@ if __name__ == "__main__":
 
     if u_choice == 1:
         hashing_main()
+        terminate = input('Mission accomplished. Press any key to exit')
     elif u_choice == 2:
         files_main()
+        terminate = input('Mission accomplished. Press any key to exit')
+    else:
+        raise Exception('Invalid value entered.')
