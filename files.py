@@ -2,12 +2,13 @@
 A simple program for automating file management.
 """
 from shutil import move
-from os import chdir
+from os import chdir, mkdir, getcwd
 from hashlib import md5, sha1, sha256, sha512, sha3_256
 
 choices = {
-    '1.': 'Move Directory',
-    '2.': 'Calculate a File Checksum.',
+    1: 'Move Directory',
+    2: 'Calculate a File Checksum.',
+    3: 'Create multiple directories.',
 }
 
 # Move all files from one dir to another
@@ -17,6 +18,17 @@ def move_dirs():
     target_dir = input('Input the full path of target directory you want to move files to: ')
 
     move(src_dir, target_dir)
+
+
+# Automate the creation of multiple directories
+def create_dirs(dir_num):
+
+    for i in range(dir_num):
+
+        dir_name = input('Enter a name for your directory: ')
+        mkdir(dir_name)
+
+    print(f'{dir_num} directories created in {getcwd()}. Press Enter to exit.')
 
 
 # Calculate a checksum for a file
@@ -82,5 +94,10 @@ def files_main():
         file_path = input('Enter the file path & name (ex: c:/uname/documents/file.txt): ')
         print(f'Your file hash is:', file_checksum(file_path))
         print()
+    elif u_choice == 3:
+        file_path = input('Enter the file path & name (ex: c:/uname/documents/file.txt): ')
+        no_of_dirs = int(input('Enter the number of directories you want to make: '))
+        chdir(file_path)
+        create_dirs(no_of_dirs)
     else:
         raise Exception('Invalid value entered.')
