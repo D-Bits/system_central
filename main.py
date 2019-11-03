@@ -4,6 +4,7 @@ from hashing import hashing_main
 from files import files_main
 from emails import emails_main
 from dirs import create_dirs
+from updates import updates_main
 
 
 
@@ -11,6 +12,7 @@ choices = {
     1: 'Hashing Things',
     2: 'File/Directory Automation',
     3: 'Email Automation',
+    4: 'Automate Updates.',
 }
 
 
@@ -33,5 +35,8 @@ if __name__ == "__main__":
     elif u_choice == 3:
         emails_main()
         input('Mission accomplished. Press enter to exit.')
+    elif u_choice == 4:
+        updates_main()
+        input('Mission accomplished. Press enter to exit.')    
     else:
         raise Exception('Invalid value entered.')
