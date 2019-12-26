@@ -1,0 +1,49 @@
+name: Python application
+
+on: [push]
+
+jobs:
+  build-windows:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.8.1
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8.1
+    - name: Compile Windows Binary
+      run: |
+        pip install pyinstaller
+        pyinstaller main.py -F -n AutomationStuff
+        
+  build-ubuntu:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.8.1
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8.1
+    - name: Compile Ubuntu Binary
+      run: |
+        pip3 install pyinstaller
+        pyinstaller main.py -F -n AutomationStuff
+        
+  build-macos:
+    
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.8.1
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8.1
+    - name: Compile MacOS Binary
+      run: |
+        pip3 install pyinstaller
+        pyinstaller main.py -F -n AutomationStuff
