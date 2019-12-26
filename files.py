@@ -35,11 +35,11 @@ def create_dirs(dir_num):
 def file_checksum(file_name):
 
     hash_options = {
-        '1.': 'MD5',
-        '2.': 'SHA1',
-        '3.': 'SHA256',
-        '4.': 'SHA512',
-        '5.': 'SHA3_256'
+        1: 'MD5',
+        2: 'SHA1',
+        3: 'SHA256',
+        4: 'SHA512',
+        5: 'SHA3_256',
     }
 
     # Show the user their hashing options
@@ -100,4 +100,4 @@ def files_main():
         chdir(file_path)
         create_dirs(no_of_dirs)
     else:
-        raise Exception('Invalid value entered.')
+        input('Invalid value entered. Press enter to exit.')
