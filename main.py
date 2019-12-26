@@ -14,7 +14,7 @@ choices = {
     3: 'Automate Updates.',
 }
 
-
+# Run the program
 if __name__ == "__main__":
     
     for key, val in choices.items():
@@ -27,12 +27,12 @@ if __name__ == "__main__":
 
     if u_choice == 1:
         hashing_main()
-        input('Mission accomplished. Press enter to exit.')
+        input('Program finished. Press enter to exit.')
     elif u_choice == 2:
         files_main()
-        input('Mission accomplished. Press enter to exit.')
+        input('Program finished. Press enter to exit.')
     elif u_choice == 3:
         updates_main()
-        input('Mission accomplished. Press enter to exit.')    
+        input('Program finished. Press enter to exit.')    
     else:
         raise Exception('Invalid value entered.')
