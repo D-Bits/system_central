@@ -1,17 +1,17 @@
 from os import chdir
 from subprocess import call
 from hashing import hashing_main
-from files import files_main
+from filesys import files_main
 from emails import emails_main
-from dirs import create_dirs
 from updates import updates_main
-
+from sysinfo import sysinfo_main
 
 
 choices = {
     1: 'Hashing Things',
     2: 'File/Directory Automation',
     3: 'Automate Updates.',
+    4: "Get System Info",
 }
 
 # Run the program
@@ -34,5 +34,8 @@ if __name__ == "__main__":
     elif u_choice == 3:
         updates_main()
         input('Program finished. Press enter to exit.')    
+    elif u_choice == 4:
+        sysinfo_main()
+        input('Program finished. Press enter to exit.') 
     else:
         raise Exception('Invalid value entered.')

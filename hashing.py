@@ -1,7 +1,7 @@
 """
 Methods for hash and/or salting strings.
 """
-from hashlib import sha256, pbkdf2_hmac
+from hashlib import sha256, sha1, pbkdf2_hmac
 from getpass import getpass
 from binascii import hexlify
 from secrets import randbits
@@ -9,7 +9,7 @@ from secrets import randbits
 choices = {
     '1': 'Produce a SHA256 digest from stdin.',
     '2': 'Compare two hashes, to see if they match.',
-    '3': ''
+    '3': 'Generate a salted hash.'
 }
 
 def getHash(msg):
@@ -26,8 +26,14 @@ def compare_hashes(hash1, hash2):
 
     if hash1 == hash2:
         print('The hashes match.')
+        print()
+        print("Hash 1: ", hash1)
+        print("Hash 2: ", hash2)
     else:
         print('The hashes do NOT match.')
+        print()
+        print("Hash 1: ", hash1)
+        print("Hash 2: ", hash2)
 
 
 # Produce a salted hash of a user's password
@@ -54,11 +60,12 @@ def hashing_main():
     elif u_choice == 2:
         first_hash = input('Input the first digest: ')
         second_hash = input('Input the second digest: ')
+        print()
         compare_hashes(first_hash, second_hash)
     elif u_choice == 3:
         user_pass = getpass('Enter a password to produce a salted hash: ')
-        print(f'Your salted PBKDF2 hash is', salted_hash(user_pass))
+        print(f'Your salted PBKDF2 hash is', salted_hash(user_pass).upper())
     else:
-        raise Exception('Invalid value entered.')
+        input('Invalid value entered. Press enter to exit.')
 
    

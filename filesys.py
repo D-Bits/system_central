@@ -5,11 +5,6 @@ from shutil import move
 from os import chdir, mkdir, getcwd
 from hashlib import md5, sha1, sha256, sha512, sha3_256
 
-choices = {
-    1: 'Move Directory',
-    2: 'Calculate a File Checksum.',
-    3: 'Create multiple directories.',
-}
 
 # Move all files from one dir to another
 def move_dirs():
@@ -79,6 +74,12 @@ def file_checksum(file_name):
 
 
 def files_main():
+
+    choices = {
+        1: 'Move Directory',
+        2: 'Calculate a File Checksum.',
+        3: 'Create multiple directories.',
+    }
 
     for key, val in choices.items():
 
