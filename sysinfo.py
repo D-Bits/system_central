@@ -47,19 +47,27 @@ def network_info():
 
 def sysinfo_main():
 
+    print()
+
     u_options = {
         1: "Get OS Info",
         2: "Get Hardware Info",
         3: "Get Network Info",
     }
 
+    
+
      # Show the user their options
     for key, val in u_options.items():
 
         print(key, val)
 
+    print()
+
     # Prompt the user to select an option
     u_choice = int(input("Enter an int to choose one of the above options: "))
+
+    print()
 
     if u_choice == 1:
         os_info()

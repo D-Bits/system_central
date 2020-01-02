@@ -70,7 +70,9 @@ def file_checksum(file_name):
         hasher = sha3_256
         with open(file_name, "rb") as open_file:
             content = open_file.read()
-        return hasher(content).hexdigest().upper() 
+        return hasher(content).hexdigest().upper()
+    else:
+        print("Invalid value entered.")
 
 
 def files_main():

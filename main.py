@@ -40,7 +40,7 @@ def main():
         main()  
     elif u_choice == 4:
         sysinfo_main()
-        print()
+        #print()
         main()
     elif u_choice == 5:
         pass
