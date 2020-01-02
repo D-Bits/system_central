@@ -1,25 +1,59 @@
 """
 Methods for hash and/or salting strings.
 """
-from hashlib import sha256, sha1, pbkdf2_hmac
+from hashlib import sha256, sha512, sha1, sha3_256, md5, pbkdf2_hmac
 from getpass import getpass
 from binascii import hexlify
 from secrets import randbits
 
 
 choices = {
-    '1': 'Produce a SHA256 digest from stdin.',
+    '1': 'Produce a hash digest from stdin.',
     '2': 'Compare two hashes, to see if they match.',
     '3': 'Generate a salted hash.'
 }
 
 
 def getHash(msg):
-    
-    # Hash the input w/ SHA-256, and encode w/ UTF-8
-    digest = sha256(msg.encode('utf-8'))
 
-    print("SHA256 Digest:", digest.hexdigest().upper()) # Output the digest
+    hash_options = {
+        1: 'MD5',
+        2: 'SHA1',
+        3: 'SHA256',
+        4: 'SHA512',
+        5: 'SHA3_256',
+    }
+
+    # Show the user their hashing options
+    for key, val in hash_options.items():
+
+        print(key, val)
+
+    print() # Blank line for readability
+
+    hash_choice = int(input("Enter an int to choose a hashing algorithm from above (If you seriously choose MD5, then you should be ashamed of yourself): "))
+
+    print()
+
+    if hash_choice == 1:
+        hasher = md5
+        digest = md5(msg.encode('utf-8'))
+    elif hash_choice == 2:
+        hasher = sha1
+        digest = sha1(msg.encode('utf-8'))
+    elif hash_choice == 3:
+        hasher = sha256
+        digest = sha256(msg.encode('utf-8'))
+    elif hash_choice == 4:
+        hasher = sha512
+        digest = sha512(msg.encode('utf-8'))
+    elif hash_choice == 5:
+        hasher = sha3_256
+        digest = sha3_256(msg.encode('utf-8'))
+    else:
+        print("Invalid value entered.")
+
+    print("Hash Digest:", digest.hexdigest().upper()) # Output the digest
 
 
 # Compare two hashes (or any two strings, really) to ensure they match
@@ -56,7 +90,7 @@ def hashing_main():
     u_choice = int(input('Enter a choice, based on the above values: '))
 
     if u_choice == 1:
-        u_msg = input('Input a string to hash it w/ SHA256: ')
+        u_msg = input('Input a string to hash: ')
         getHash(u_msg)
     elif u_choice == 2:
         first_hash = input('Input the first digest: ')

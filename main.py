@@ -8,10 +8,11 @@ from sysinfo import sysinfo_main
 
 
 choices = {
-    1: 'Hashing Things',
-    2: 'File/Directory Automation',
-    3: 'Automate Updates.',
+    1: "Hashing Things",
+    2: "File/Directory Automation",
+    3: "Automate Updates.",
     4: "Get System Info",
+    5: "Close program",
 }
 
 # Run the program
@@ -41,6 +42,8 @@ def main():
         sysinfo_main()
         print()
         main()
+    elif u_choice == 5:
+        pass
     else:
         raise Exception('Invalid value entered.')
 
