@@ -1,5 +1,3 @@
-from os import chdir
-from subprocess import call
 from hashing import hashing_main
 from filesys import files_main
 from emails import emails_main
