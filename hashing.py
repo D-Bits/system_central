@@ -10,7 +10,6 @@ from secrets import randbits
 choices = {
     '1': 'Produce a hash digest from stdin.',
     '2': 'Compare two hashes, to see if they match.',
-    '3': 'Generate a salted hash.'
 }
 
 

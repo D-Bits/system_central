@@ -80,7 +80,7 @@ def files_main():
     choices = {
         1: 'Move Directory',
         2: 'Calculate a File Checksum.',
-        3: 'Create multiple directories.',
+        3: 'Create Multiple Directories.',
     }
 
     for key, val in choices.items():

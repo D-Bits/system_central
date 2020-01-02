@@ -12,7 +12,7 @@ choices = {
     2: "File/Directory Automation",
     3: "Automate Updates.",
     4: "Get System Info",
-    5: "Close program",
+    5: "Close Program",
 }
 
 # Run the program
