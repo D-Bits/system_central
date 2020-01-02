@@ -6,14 +6,15 @@ from getpass import getpass
 from binascii import hexlify
 from secrets import randbits
 
+
 choices = {
     '1': 'Produce a SHA256 digest from stdin.',
     '2': 'Compare two hashes, to see if they match.',
     '3': 'Generate a salted hash.'
 }
 
-def getHash(msg):
 
+def getHash(msg):
     
     # Hash the input w/ SHA-256, and encode w/ UTF-8
     digest = sha256(msg.encode('utf-8'))

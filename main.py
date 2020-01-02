@@ -15,7 +15,7 @@ choices = {
 }
 
 # Run the program
-if __name__ == "__main__":
+def main():
     
     for key, val in choices.items():
 
@@ -27,15 +27,22 @@ if __name__ == "__main__":
 
     if u_choice == 1:
         hashing_main()
-        input('Program finished. Press enter to exit.')
+        print()
+        main()
     elif u_choice == 2:
         files_main()
-        input('Program finished. Press enter to exit.')
+        print()
+        main()
     elif u_choice == 3:
         updates_main()
-        input('Program finished. Press enter to exit.')    
+        print()
+        main()  
     elif u_choice == 4:
         sysinfo_main()
-        input('Program finished. Press enter to exit.') 
+        print()
+        main()
     else:
         raise Exception('Invalid value entered.')
+
+
+main()
