@@ -50,6 +50,7 @@ def sysinfo_main():
     print()
 
     u_options = {
+        0: 'Return to Main Menu',
         1: "Get OS Info",
         2: "Get Hardware Info",
         3: "Get Network Info",
@@ -69,7 +70,9 @@ def sysinfo_main():
 
     print()
 
-    if u_choice == 1:
+    if u_choice == 0:
+        pass
+    elif u_choice == 1:
         os_info()
     elif u_choice == 2:
         hw_info()

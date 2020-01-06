@@ -78,6 +78,7 @@ def file_checksum(file_name):
 def files_main():
 
     choices = {
+        0: 'Return to Main Menu',
         1: 'Move Directory',
         2: 'Calculate a File Checksum.',
         3: 'Create Multiple Directories.',
@@ -91,7 +92,9 @@ def files_main():
 
     u_choice = int(input('Enter a choice, based on the above values: '))
 
-    if u_choice == 1:
+    if u_choice == 0:
+        pass
+    elif u_choice == 1:
         move_dirs()
     elif u_choice == 2:
         file_path = input('Enter the file path & name (ex: c:/uname/documents/file.txt): ')

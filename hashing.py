@@ -8,8 +8,9 @@ from secrets import randbits
 
 
 choices = {
-    '1': 'Produce a hash digest from stdin.',
-    '2': 'Compare two hashes, to see if they match.',
+     0: 'Return to Main Menu',
+     1: 'Produce a hash digest from stdin.',
+     2: 'Compare two hashes, to see if they match.',
 }
 
 
@@ -88,7 +89,9 @@ def hashing_main():
 
     u_choice = int(input('Enter a choice, based on the above values: '))
 
-    if u_choice == 1:
+    if u_choice == 0:
+        pass
+    elif u_choice == 1:
         u_msg = input('Input a string to hash: ')
         getHash(u_msg)
     elif u_choice == 2:
