@@ -6,11 +6,11 @@ from sysinfo import sysinfo_main
 
 
 choices = {
+    0: "Exit Program",
     1: "Hashing Things",
     2: "File/Directory Automation",
     3: "Automate Updates.",
     4: "Get System Info",
-    5: "Close Program",
 }
 
 # Run the program
@@ -24,7 +24,9 @@ def main():
 
     u_choice = int(input('Enter a choice, based on the above values: '))
 
-    if u_choice == 1:
+    if u_choice == 0:
+        pass
+    elif u_choice == 1:
         hashing_main()
         print()
         main()
@@ -40,10 +42,11 @@ def main():
         sysinfo_main()
         #print()
         main()
-    elif u_choice == 5:
-        pass
     else:
-        raise Exception('Invalid value entered.')
+        print()
+        print('***Invalid value entered.***')
+        print()
+        main()
 
 
 main()
