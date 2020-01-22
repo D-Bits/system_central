@@ -74,4 +74,6 @@ def updates_main():
         linux_updates()
     elif os_type == 3:
         mac_updates()
-            
+    else:
+        print("***Invalid option. Choose again.***")
+        updates_main()
