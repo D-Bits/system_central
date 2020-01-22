@@ -4,6 +4,13 @@ A simple Python script to update currently installed packages.
 from subprocess import run, CalledProcessError
 from platform import system
 
+# Define options for updates
+options = {
+    0: "Return to main menu.",
+    1: "Windows updates, via Chocolatey & WSL/Ubuntu.",
+    2: "Linux updates, via APT.",
+    3: "MacOS updates via Homebrew",
+}
 
 # Windows updates
 def win_updates():
@@ -51,7 +58,13 @@ def mac_updates():
 
 def updates_main():
         
-    os_type = int(input('Enter 1 for Windows (including WSL/Ubuntu) updates, 2 for Linux, and 3 for MacOS (Homebrew), or 0 to return to main menu: '))
+    for key, val in options.items():
+
+        print(key, val)
+
+    print()
+
+    os_type = int(input('Enter an int from the options above: '))
 
     if os_type == 0:
         pass
