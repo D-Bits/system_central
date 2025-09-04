@@ -1,8 +1,8 @@
 from hashing import hashing_main
 from filesys import files_main
-from emails import emails_main
 from updates import updates_main
 from sysinfo import sysinfo_main
+from mock import mock_main
 
 
 choices = {
@@ -11,6 +11,7 @@ choices = {
     2: "File/Directory Automation",
     3: "Automate Updates.",
     4: "Get System Info",
+    5: "Generate Mock Data",
 }
 
 # Run the program
@@ -41,6 +42,10 @@ def main():
     elif u_choice == 4:
         sysinfo_main()
         #print()
+        main()
+    elif u_choice == 5:
+        mock_main()
+        print()
         main()
     else:
         print()
