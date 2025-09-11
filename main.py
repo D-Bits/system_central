@@ -47,6 +47,11 @@ def main():
         mock_main()
         print()
         main()
+    elif u_choice == 76:
+        print()
+        print('Congrats, young padawan, you found the easter egg!')
+        print()
+        main()
     else:
         print()
         print('***Invalid value entered.***')
