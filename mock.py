@@ -2,8 +2,10 @@
 UDFs for generating mock data using the Faker library.
 """
 from faker import Faker
+import pandas as pd
 import random
 import hashlib
+import json
 
 
 choices = {
@@ -25,7 +27,7 @@ def mock_people(num: int, output_loc: str, dtype: str = 'csv'):
         num (int): Number of mock people to generate.
         output_loc (str): File path to save the generated data.
     """
-    if dtype.lower() != 'csv':
+    if dtype=='csv':
         with open(output_loc, 'w') as f:
             for _ in range(num):
                 lname = fake.last_name()
@@ -39,28 +41,27 @@ def mock_people(num: int, output_loc: str, dtype: str = 'csv'):
                 # Write the values to a CSV  file
                 f.write(f"{lname},{fname},{address},{email},{phone}\n")
     elif dtype=='json':
-        with open(output_loc, 'w') as f:
-            f.write("[\n")
-            for _ in range(num):
+        dict_list = []
+        for _ in range(num):
                 lname = fake.last_name()
                 fname = fake.first_name()
                 address = fake.address().replace('\n', ', ')
                 email = fake.email()
                 phone = fake.phone_number()
-                # Write the values to a JSON file
-                f.write("  {\n")
-                f.write(f'    "lname": "{lname}",\n')
-                f.write(f'    "fname": "{fname}",\n')
-                f.write(f'    "street_address": "{address}",\n')
-                f.write(f'    "email": "{email}",\n')
-                f.write(f'    "phone": "{phone}"\n')
-                if _ == num - 1:
-                    f.write("  }\n")
-                else:
-                    f.write("  },\n")
-            f.write("]\n")
+                user_dict = {
+                    "lname": lname,
+                    "fname": fname,
+                    "street_address": address,
+                    "email": email,
+                    "phone": phone
+                }
+                dict_list.append(user_dict)
+        df = pd.DataFrame(dict_list)
+        # df.head(len(df))
+        df.to_json(output_loc, orient='records')
     else:
-        print("Invalid data type specified. Please use 'csv' or 'json'.")
+        print("#### Invalid data type specified. Please use 'csv' or 'json'. ####")
+        mock_main()
 
 
 def mock_companies(num: int, output_loc: str):
