@@ -17,7 +17,7 @@ choices = {
 fake = Faker()
 
 
-def mock_people(num: int, output_loc: str):
+def mock_people(num: int, output_loc: str, dtype: str = 'csv'):
     """
     Generate mock people data and save to a file.
 
@@ -25,18 +25,42 @@ def mock_people(num: int, output_loc: str):
         num (int): Number of mock people to generate.
         output_loc (str): File path to save the generated data.
     """
-    with open(output_loc, 'w') as f:
-        for _ in range(num):
-            lname = fake.last_name()
-            fname = fake.first_name()
-            address = fake.address().replace('\n', ', ')
-            email = fake.email()
-            phone = fake.phone_number()
-            # Create a CSV header 
-            if _ == 0:
-                f.write("lname,fname,street_address,email,phone\n")
-            # Write the values to a CSV  file
-            f.write(f"{lname},{fname},{address},{email},{phone}\n")
+    if dtype.lower() != 'csv':
+        with open(output_loc, 'w') as f:
+            for _ in range(num):
+                lname = fake.last_name()
+                fname = fake.first_name()
+                address = fake.address().replace('\n', ', ')
+                email = fake.email()
+                phone = fake.phone_number()
+                # Create a CSV header 
+                if _ == 0:
+                    f.write("lname,fname,street_address,email,phone\n")
+                # Write the values to a CSV  file
+                f.write(f"{lname},{fname},{address},{email},{phone}\n")
+    elif dtype=='json':
+        with open(output_loc, 'w') as f:
+            f.write("[\n")
+            for _ in range(num):
+                lname = fake.last_name()
+                fname = fake.first_name()
+                address = fake.address().replace('\n', ', ')
+                email = fake.email()
+                phone = fake.phone_number()
+                # Write the values to a JSON file
+                f.write("  {\n")
+                f.write(f'    "lname": "{lname}",\n')
+                f.write(f'    "fname": "{fname}",\n')
+                f.write(f'    "street_address": "{address}",\n')
+                f.write(f'    "email": "{email}",\n')
+                f.write(f'    "phone": "{phone}"\n')
+                if _ == num - 1:
+                    f.write("  }\n")
+                else:
+                    f.write("  },\n")
+            f.write("]\n")
+    else:
+        print("Invalid data type specified. Please use 'csv' or 'json'.")
 
 
 def mock_companies(num: int, output_loc: str):
@@ -96,7 +120,7 @@ def mock_users(num: int, output_loc: str):
             fname = fake.first_name()
             lname = fake.last_name()
             email = fake.email()
-            password = f"{fake.word() + fake.word() + random.randint(1,9999).__str__()}"
+            password = f"{fake.word() + fake.word() + random.randint(1940,2010).__str__()}"
             # password = fake.password(length=12)
             # Hash the password using SHA-256 and convert to uppercase
             password_hash = hashlib.sha256(password.encode()).hexdigest()
@@ -123,7 +147,8 @@ def mock_main():
     elif u_choice == 1:
         n = int(input('How many mock people to generate? '))
         loc = input('Enter a file path to save the data (e.g., C:/path/to/file.csv): ')
-        mock_people(n, loc)
+        dtype = input("Enter data type ('csv' or 'json'): ").strip().lower()
+        mock_people(n, loc, dtype=dtype)
         print(f'Mock people data saved to {loc}')
     elif u_choice == 2:
         n = int(input('How many mock companies to generate? '))
