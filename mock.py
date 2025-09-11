@@ -26,6 +26,7 @@ def mock_people(num: int, output_loc: str, dtype: str = 'csv'):
     Args:
         num (int): Number of mock people to generate.
         output_loc (str): File path to save the generated data.
+        dtype (str): Data type to save ('csv' or 'json').
     """
     if dtype=='csv':
         with open(output_loc, 'w') as f:
@@ -64,74 +65,135 @@ def mock_people(num: int, output_loc: str, dtype: str = 'csv'):
         mock_main()
 
 
-def mock_companies(num: int, output_loc: str):
+def mock_companies(num: int, output_loc: str, dtype: str):
     """
     Generate mock company data and save to a file.
 
     Args:
         num (int): Number of mock companies to generate.
         output_loc (str): File path to save the generated data.
+        dtype (str): Data type to save ('csv' or 'json').
     """
-    with open(output_loc, 'w') as f:
+    if dtype=='csv':
+        with open(output_loc, 'w') as f:
+            for _ in range(num):
+                cname = fake.company()
+                address = fake.address().replace('\n', ', ')
+                email = fake.company_email()
+                phone = fake.phone_number()
+                # Create a CSV header 
+                if _ == 0:
+                    f.write("cname,street_address,email,phone\n")
+                # Write the values to a CSV  file
+                f.write(f"{cname},{address},{email},{phone}\n")
+    elif dtype=='json':
+        dict_list = []
         for _ in range(num):
-            cname = fake.company()
-            address = fake.address().replace('\n', ', ')
-            email = fake.company_email()
-            phone = fake.phone_number()
-            # Create a CSV header 
-            if _ == 0:
-                f.write("cname,street_address,email,phone\n")
-            # Write the values to a CSV  file
-            f.write(f"{cname},{address},{email},{phone}\n")
+                cname = fake.company()
+                address = fake.address().replace('\n', ', ')
+                email = fake.company_email()
+                phone = fake.phone_number()
+                user_dict = {
+                    "company_name": cname,
+                    "street_address": address,
+                    "email": email,
+                    "phone": phone
+                }
+                dict_list.append(user_dict)
+        df = pd.DataFrame(dict_list)
+        # df.head(len(df))
+        df.to_json(output_loc, orient='records')
 
 
-def mock_geo(num: int, output_loc: str):
+def mock_geo(num: int, output_loc: str, dtype: str):
     """
     Generate mock geographical data and save to a file.
 
     Args:
         num (int): Number of mock geographical entries to generate.
         output_loc (str): File path to save the generated data.
+        dtype (str): Data type to save ('csv' or 'json').
     """
-    with open(output_loc, 'w') as f:
+    if dtype=='csv':
+        with open(output_loc, 'w') as f:
+            for _ in range(num):
+                city = fake.city()
+                state = fake.state()
+                country = fake.country()
+                lat = fake.latitude()
+                lon = fake.longitude()
+                # Create a CSV header 
+                if _ == 0:
+                    f.write("city,statecode,country,lat,lon\n")
+                # Write the values to a CSV  file
+                f.write(f"{city},{state},{country},{lat},{lon}\n")
+    elif dtype=='json':
+        dict_list = []
         for _ in range(num):
-            city = fake.city()
-            state = fake.state()
-            country = fake.country()
-            lat = fake.latitude()
-            lon = fake.longitude()
-            # Create a CSV header 
-            if _ == 0:
-                f.write("city,statecode,country,lat,lon\n")
-            # Write the values to a CSV  file
-            f.write(f"{city},{state},{country},{lat},{lon}\n")
+                city = fake.city()
+                state = fake.state()
+                country = fake.country()
+                lat = fake.latitude()
+                lon = fake.longitude()
+                user_dict = {
+                    "city": city,
+                    "statecode": state,
+                    "country": country,
+                    "lat": lat,
+                    "lon": lon
+                }
+                dict_list.append(user_dict)
+        df = pd.DataFrame(dict_list)
+        # df.head(len(df))
+        df.to_json(output_loc, orient='records')
 
 
-def mock_users(num: int, output_loc: str):
+def mock_users(num: int, output_loc: str, dtype: str):
     """
     Generate mock user data and save to a file.
 
     Args:
         num (int): Number of mock users to generate.
         output_loc (str): File path to save the generated data.
+        dtype (str): Data type to save ('csv' or 'json').
     """
-    with open(output_loc, 'w') as f:
+    if dtype=='csv':
+        with open(output_loc, 'w') as f:
+            for _ in range(num):
+                uname = fake.user_name()
+                fname = fake.first_name()
+                lname = fake.last_name()
+                email = fake.email()
+                password = f"{fake.word() + fake.word() + random.randint(1940,2010).__str__()}"
+                # Hash the password using SHA-256 and convert to uppercase
+                password_hash = hashlib.sha256(password.encode()).hexdigest()
+                # Create a CSV header 
+                if _ == 0:
+                    f.write("uname,fname,lname,email,userpass\n")
+                # Write the values to a CSV  file
+                f.write(f"{uname},{fname},{lname},{email},{password_hash}\n")
+    elif dtype=='json':
+        dict_list = []
         for _ in range(num):
-            uname = fake.user_name()
-            fname = fake.first_name()
-            lname = fake.last_name()
-            email = fake.email()
-            password = f"{fake.word() + fake.word() + random.randint(1940,2010).__str__()}"
-            # password = fake.password(length=12)
-            # Hash the password using SHA-256 and convert to uppercase
-            password_hash = hashlib.sha256(password.encode()).hexdigest()
-            # password_hash = password_hash.upper()
-            # Create a CSV header 
-            if _ == 0:
-                f.write("uname,fname,lname,email,userpass\n")
-            # Write the values to a CSV  file
-            f.write(f"{uname},{fname},{lname},{email},{password_hash}\n")
-
+                uname = fake.user_name()
+                fname = fake.first_name()
+                lname = fake.last_name()
+                email = fake.email()
+                password = f"{fake.word() + fake.word() + random.randint(1940,2010).__str__()}"
+                # Hash the password using SHA-256 and convert to uppercase
+                password_hash = hashlib.sha256(password.encode()).hexdigest()
+                # password_hash = password_hash.upper()
+                user_dict = {
+                    "uname": uname,
+                    "fname": fname,
+                    "lname": lname,
+                    "email": email,
+                    "userpass": password_hash
+                }
+                dict_list.append(user_dict)
+        df = pd.DataFrame(dict_list)
+        # df.head(len(df))
+        df.to_json(output_loc, orient='records')
 
 def mock_main():
 
