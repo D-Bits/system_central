@@ -49,7 +49,7 @@ def main():
         main()
     elif u_choice == 76:
         print()
-        print('Congrats, young padawan, you found the easter egg!')
+        print('Congrats, young padawan: you found the easter egg!')
         print()
         main()
     else:
