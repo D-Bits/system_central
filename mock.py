@@ -216,17 +216,20 @@ def mock_main():
     elif u_choice == 2:
         n = int(input('How many mock companies to generate? '))
         loc = input('Enter a file path to save the data (e.g., C:/path/to/file.csv): ')
-        mock_companies(n, loc)
+        dtype = input("Enter data type ('csv' or 'json'): ").strip().lower()
+        mock_companies(n, loc, dtype)
         print(f'Mock company data saved to {loc}')
     elif u_choice == 3:
         n = int(input('How many mock geographical entries to generate? '))
         loc = input('Enter a file path to save the data (e.g., C:/path/to/file.csv): ')
-        mock_geo(n, loc)
+        dtype = input("Enter data type ('csv' or 'json'): ").strip().lower()
+        mock_geo(n, loc, dtype)
         print(f'Mock geographical data saved to {loc}')
     elif u_choice == 4:
         n = int(input('How many mock users to generate? '))
         loc = input('Enter a file path to save the data (e.g., C:/path/to/file.csv): ')
-        mock_users(n, loc)
+        dtype = input("Enter data type ('csv' or 'json'): ").strip().lower()
+        mock_users(n, loc, dtype)
         print(f'Mock user data saved to {loc}')
     else:
         print()
