@@ -15,7 +15,7 @@ the project repository.
 
 ## Executable SHA256 Checksum(s):
 
-* **Windows:** 3D7E73011C8E0BB0510C2DFC574F54ED09DC04C9549A44FCF273FFB2A10553CC
+* **Windows:** bf96b4d2b17d22afe28d0e6bfd0aa633570b7f8ac85e42d50d235038239c8c6e
 
 
 
