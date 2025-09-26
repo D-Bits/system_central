@@ -45,6 +45,39 @@ def network_info():
     print()
 
 
+# Find what ports are currently listening on localhost
+def get_servers(ports: list):
+
+    # Common ports to check
+    common_ports = [21, 22, 23, 25, 53, 80, 110, 143, 443, 3306, 8080]
+    if ports == None:
+        for port in common_ports:
+
+            sock = socket()
+
+            result = sock.connect_ex(('localhost', port))
+
+            if result == 0:
+                print(f"Port {port} is listening.")
+            else:
+                print(f"Port {port} is NOT listening.")
+
+            sock.close()
+    else:
+        for port in ports:
+
+            sock = socket()
+
+            result = sock.connect_ex(('localhost', int(port)))
+
+            if result == 0:
+                print(f"Port {port} is listening.")
+            else:
+                print(f"Port {port} is NOT listening.")
+
+            sock.close()
+
+
 def sysinfo_main():
 
     print()
@@ -54,6 +87,7 @@ def sysinfo_main():
         1: "Get OS Info",
         2: "Get Hardware Info",
         3: "Get Network Info",
+        4: "Find Currently Running Servers"
     }
 
     
@@ -78,7 +112,11 @@ def sysinfo_main():
         hw_info()
     elif u_choice == 3:
         network_info()
+    elif u_choice == 4:
+        ports = list(input("Enter ports to check (comma separated, or leave blank for common ports): ").split(","))
+        if ports == ['']:
+            get_servers(None)
+        else:
+            get_servers(ports)
     else:
         print("Invalid option.")
-
-        
